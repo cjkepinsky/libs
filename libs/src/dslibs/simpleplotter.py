@@ -2,9 +2,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-# from graphviz import Source
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
+import time
 
 
 def feature_importance(model, X):
@@ -14,16 +14,6 @@ def feature_importance(model, X):
     plt.xlabel("importance")
     plt.ylabel("feature")
     plt.show()
-
-
-# def decision_tree(model, X):
-#     timestamp = time.monotonic_ns()
-#     path = 'tree_' + str(timestamp) + '.dot'
-#     export_graphviz(model, out_file=path, feature_names=X.columns,
-#                     impurity=False, filled=True)
-#     s = Source.from_file(path)
-#     s.render('tree', format='jpg', view=True)
-#     # https://scikit-learn.org/stable/modules/tree.html
 
 
 def chart(results_arr):
