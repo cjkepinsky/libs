@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='data-science-libs',
-    version='0.0.1',
+    name='dslibs',
+    version='0.0.3',
     description='data science related tools & helpers',
     url='https://github.com/cjkepinsky/libs',
     author='Chris J. Kepinsky',
     author_email='chris.kepinski@gmail.com',
     license='MIT',
-    packages=['libs'],
+    packages=['dslibs'],
     install_requires=[
         'babyplots',
         'matplotlib',
