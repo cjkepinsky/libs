@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='libs',
-    version='0.1',
+    name='data-science-libs',
+    version='0.0.1',
     description='data science related tools & helpers',
     url='https://github.com/cjkepinsky/libs',
     author='Chris J. Kepinsky',
