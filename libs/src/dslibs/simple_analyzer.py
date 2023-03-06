@@ -1,5 +1,5 @@
-from simpleplotter import simple_features_overview, simple_correlations
-from simpleplotter import simple_heatmap
+from .simpleplotter import simple_features_overview, simple_correlations
+from .simpleplotter import simple_heatmap
 
 
 def print_analytics(df, target_col=None):

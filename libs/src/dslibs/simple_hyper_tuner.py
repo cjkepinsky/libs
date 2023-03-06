@@ -1,8 +1,8 @@
 # https://medium.com/all-things-ai/in-depth-parameter-tuning-for-gradient-boosting-3363992e9bae
 import sys
 
-from simple_processing import get_model_name, categorize, categorize_train_valid_test
-from simpleplotter import simple_roc
+from .simple_processing import get_model_name, categorize, categorize_train_valid_test
+from .simpleplotter import simple_roc
 from sklearn import svm
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
