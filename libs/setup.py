@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='dslibs',
-    version='0.0.5',
+    version='0.0.6',
     description='data science related tools & helpers',
     url='https://github.com/cjkepinsky/libs',
     author='Chris J. Kepinsky',
