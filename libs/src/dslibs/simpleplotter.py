@@ -5,6 +5,16 @@ import seaborn as sns
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
 import time
+import matplotlib as mpl
+
+
+def plot_keras_model_history(x1, x2, label1, label2):
+    mpl.style.use('seaborn-v0_8')
+    fig, ax = plt.subplots(figsize=(15, 7))
+    ax.set_title("Baseline and predictions", color='C0')
+    ax.plot(range(len(x1)), x1, color="#f00", label=label1)
+    ax.plot(range(len(x2)), x2, color="#00f", label=label2)
+    plt.legend()
 
 
 def feature_importance(model, X):

@@ -22,6 +22,7 @@ class SimpleRegressor:
         self.y_valid = y_valid
         self.model = None
         self.winner = None
+        self.winner_params = None
         self.units_min = None
         self.units_max = None
         self.units_step = None
@@ -38,7 +39,7 @@ class SimpleRegressor:
         # tuner = keras_tuner.RandomSearch(
         tuner = keras_tuner.Hyperband(
             hypermodel=self.build_fit_callback,
-            objective=keras_tuner.Objective("val_mean_absolute_error", direction="min"),
+            objective=keras_tuner.Objective("val_accuracy", direction="max"),
             max_epochs=50,
             factor=3,
             seed=42,
@@ -55,6 +56,7 @@ class SimpleRegressor:
         tuner.results_summary()
         winner = tuner.get_best_models(num_models=1)[0]
         winner.build(input_shape=[self.features_count])
+        self.winner_params = tuner.get_best_hyperparameters(1)
         self.winner = winner
         return winner
 
@@ -70,7 +72,7 @@ class SimpleRegressor:
     def build_model(self, units, activation, layers_count):
         m = Sequential()
         m.add(Dense(units=units, activation=activation, input_shape=[self.features_count]))
-        for i in range(layers_count-1):
+        for i in range(layers_count):
             m.add(Dense(units=units, activation=activation))
 
         m.add(Dense(1))
@@ -80,10 +82,12 @@ class SimpleRegressor:
         log_dir = "logs/tensorboard/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
 
+        # metrics=[MeanAbsoluteError()],
+
         self.model.compile(
             optimizer="adam",
             loss="mean_absolute_error",
-            metrics=[MeanAbsoluteError()],
+            metrics=['accuracy']
         )
 
         history = self.model.fit(x=self.X_train, y=self.y_train,
